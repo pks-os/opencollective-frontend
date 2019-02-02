@@ -17,10 +17,6 @@ import email from './lib/email';
 export default (server, app) => {
   const urlencodedParser = express.urlencoded({ extended: false });
 
-  // By default, we cache all GET calls for 30s at the CDN level (cloudflare) => we should increase this over time
-  // note: only for production/staging (NextJS overrides this in development env)
-  server.get('*', maxAge(30));
-
   server.get('/static/*', maxAge(7200));
 
   server.get('/favicon.*', maxAge(300000), (req, res) => {
