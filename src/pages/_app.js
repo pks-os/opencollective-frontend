@@ -46,6 +46,27 @@ class OpenCollectiveFrontendApp extends App {
     return { pageProps, scripts };
   }
 
+  async componentDidMount() {
+    const { availableLanguages, language, locale } = this.props.pageProps;
+    // If the language was not forced (browser detection),
+    if (!language) {
+      const language = (navigator.languages && navigator.languages[0]) || navigator.language || navigator.userLanguage;
+      const shortLanguage = language.substring(0, 2);
+      // If the detected language is supported
+      if (shortLanguage && availableLanguages.includes(shortLanguage)) {
+        // Figure if there is a client/server mismatch
+        if (shortLanguage !== locale) {
+          // In that case, redirect!
+          const url = new URL(window.location.href);
+          if (!url.searchParams.get('language')) {
+            url.searchParams.set('language', shortLanguage);
+            window.location = url.toString();
+          }
+        }
+      }
+    }
+  }
+
   render() {
     const { client, Component, pageProps, scripts } = this.props;
 
