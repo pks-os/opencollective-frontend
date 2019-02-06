@@ -265,7 +265,7 @@
   "virtualCards.create.recipients": "Recipients",
   "virtualCards.create.recipientsDetails": "A list of emails that will receive a gift card",
   "virtualCards.create.customMessage": "Custom message",
-  "forms.optional": "Optional",
+  "forms.optional": "Optionnel",
   "virtualCards.create.number": "Number of gift cards",
   "virtualCards.create.amount": "Amount",
   "virtualCards.create.paymentMethod": "Payment Method",
